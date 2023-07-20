@@ -1,0 +1,22 @@
+<ActionBar title="List of my products"></ActionBar>
+
+<ScrollView>
+  <GridLayout>
+    <!-- <StackLayout>
+    <button text="Click Me" nsRouterLink="/productdetails"></button>
+  </StackLayout> -->
+
+    <StackLayout>
+      <StackLayout
+        *ngFor="let product of products"
+        class="productContainer"
+        [nsRouterLink]="['/productdetails']"
+      >
+        <Image [src]="product.image" class="productImage"></Image>
+        <label [text]="product.title" class="h1"></label>
+        <label [text]="product.description" textWrap="true"></label>
+        <label [text]="'$' + product.price" class="ProductPrice"></label>
+      </StackLayout>
+    </StackLayout>
+  </GridLayout>
+</ScrollView>
