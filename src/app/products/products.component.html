@@ -8,14 +8,28 @@
 
     <StackLayout>
       <StackLayout
-        *ngFor="let product of products"
+        *ngFor="let product of productsReal"
         class="productContainer"
-        [nsRouterLink]="['/productdetails']"
+        [nsRouterLink]="['/productdetails', product.id]"
       >
-        <Image [src]="product.image" class="productImage"></Image>
-        <label [text]="product.title" class="h1"></label>
-        <label [text]="product.description" textWrap="true"></label>
-        <label [text]="'$' + product.price" class="ProductPrice"></label>
+        <Image
+          [src]="
+            product.data[0].attributes.productimage.data.formats.medium.url
+          "
+          class="productImage"
+        ></Image>
+        <label
+          [text]="product.data[0].attributes.productname"
+          class="h1"
+        ></label>
+        <label
+          [text]="product.data[0].attributes.productdescription"
+          textWrap="true"
+        ></label>
+        <label
+          [text]="'$' + product.data[0].attributes.price"
+          class="ProductPrice"
+        ></label>
       </StackLayout>
     </StackLayout>
   </GridLayout>

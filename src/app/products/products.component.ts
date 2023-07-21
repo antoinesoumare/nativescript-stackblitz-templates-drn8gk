@@ -1,11 +1,26 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ns-products',
   templateUrl: './products.component.html',
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit{
   myTitle = 'This title is from the component';
+
+  productsReal: any[] = [];
+  constructor(private http: HttpClient){}
+
+  getProductDetails(id:number){
+    console.log('ID', id);
+  }
+
+  ngOnInit(){
+  this.http.get<any>('https://cms.antoinesoumare.me/api/products?populate=*').subscribe(res =>{
+    console.log(res);
+    this.productsReal = res.data;
+  })
+  }
 
   products: any[] = [
     {
